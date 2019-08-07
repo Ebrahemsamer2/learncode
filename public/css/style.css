@@ -1,0 +1,59 @@
+
+/* Some Constant */
+.row {
+	padding: 0;
+	margin: 0;
+}
+.clear {
+	clear: both;
+}
+ul.pagination {
+	float: right;
+	margin-right: 30px;
+}
+label {
+	color: #888 !important;
+}
+/* users.index */
+
+.table form {
+	margin-top: 15px;
+}
+.table tr th,
+.table tr td {
+	text-align: center;
+}
+
+/* courses.index */
+.course-image {
+	transition: .3s ease-in-out;
+}
+
+.admin-action {
+	position: absolute;
+	left: 10px;
+}
+.admin-action form,
+.video-actions form {
+	display: inline;
+}
+.course-track-name {
+	color: #dedede;
+	transition: .3s ease-in-out;
+}
+.course-track-name:hover {
+	color: #fff;
+}
+
+/* course.show */
+
+.video-container {
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid grey;
+	border-radius: 2px;
+}
+.video-container p {
+	padding: 0;
+	margin: 0;
+}
