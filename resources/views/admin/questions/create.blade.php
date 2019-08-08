@@ -7,8 +7,18 @@
 @endsection
 
 @section('content')
-	
-	{!! Form::open(['method' => 'POST', 'action' => 'Admin\QuestionController@store']) !!}
+	<!-- JS Validation Errors -->
+	<div class="alert alert-danger errors"></div>
+	<!-- PHP Validation Errors -->
+	@if($errors->any())
+		@foreach($errors->all() as $error)
+			<div class="alert alert-danger">
+				{{ $error }}
+			</div>
+		@endforeach
+	@endif
+
+	{!! Form::open(['method' => 'POST', 'action' => 'Admin\QuestionController@store', 'class' => 'question-form']) !!}
 		<div class="form-group">
 			{!! Form::label('title', 'Question Title') !!}
 			{!! Form::text('title', null, ['class' => 'form-control']) !!}

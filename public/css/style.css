@@ -14,6 +14,9 @@ ul.pagination {
 label {
 	color: #888 !important;
 }
+.errors {
+	display: none;
+}
 /* users.index */
 
 .table form {

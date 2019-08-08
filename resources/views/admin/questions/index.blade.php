@@ -26,14 +26,15 @@
       	@foreach(explode(' ', $question->answers) as $answer)
       		@if($answer == $question->right_answer)
       		  - <span class="btn-primary">{{ $question->right_answer }}</span>
-      		@endif
-      		- <span class="">{{ $answer }}</span>
+      		@else
+            - <span class="">{{ $answer }}</span>
+          @endif
       	@endforeach	
       </td>
       <td>
       	<a class="btn btn-info btn-sm" href="/admin/questions/{{ $question->id }}/edit">Edit</a>
 
-      	{!! Form::open(['method' => 'POST', 'action' => ['Admin\QuestionController@destroy', $question->id]]) !!}
+      	{!! Form::open(['method' => 'DELETE', 'action' => ['Admin\QuestionController@destroy', $question->id]]) !!}
       		{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
       	{!! Form::close() !!}
       </td>

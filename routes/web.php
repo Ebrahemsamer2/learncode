@@ -19,7 +19,7 @@ Route::namespace('Admin')->group(function() {
 
 	Route::resource('admin/photos','PhotoController');
 
-	Route::resource('admin/questions','QuestionController');
+	Route::resource('admin/questions','QuestionController', ['except' => ['show']]);
 
 	Route::resource('admin/videos','VideoController');
 
