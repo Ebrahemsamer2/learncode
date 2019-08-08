@@ -60,10 +60,10 @@
               <p>Courses</p>
             </a>
           </li>
-          <li class="nav-item {{ explode('.', \Request::route()->getName())[0] == 'quizes' ? 'active' : '' }} ">
-            <a class="nav-link" href="/admin/quizes">
+          <li class="nav-item {{ explode('.', \Request::route()->getName())[0] == 'questions' ? 'active' : '' }} ">
+            <a class="nav-link" href="/admin/questions">
               <i class="fa fa-question-circle"></i>
-              <p>Quizes</p>
+              <p>Questions</p>
             </a>
           </li>
           <li class="nav-item {{ explode('.', \Request::route()->getName())[0] == 'videos' ? 'active' : '' }} ">

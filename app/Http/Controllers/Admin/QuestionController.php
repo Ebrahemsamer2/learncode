@@ -23,8 +23,6 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         
-
-
     }
     
     public function show(Question $question)
@@ -40,8 +38,8 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         
-        
-        
+
+
     }
 
     public function destroy(Question $question)
