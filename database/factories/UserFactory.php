@@ -78,10 +78,12 @@ $factory->define(Video::class, function (Faker $faker) {
 
 
 $factory->define(Question::class, function (Faker $faker) {
+    $answers = $faker->paragraph(1);
+    $right_answer = explode(' ', $answers)[$faker->randomElement([0,1,2,3])];
     return [
         'title' => $faker->paragraph(1),
-        'answers' => $faker->paragraph(1),
-        'right_answer' => $faker->word,
+        'answers' => $answers,
+        'right_answer' => $right_answer,
         'score' => $faker->randomElement([10,15,20]),
         'track_id' => Track::all()->random()->id,
     ];

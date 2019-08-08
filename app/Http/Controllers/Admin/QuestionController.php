@@ -22,31 +22,31 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        //
+        
+
+
     }
     
-    public function show($id)
+    public function show(Question $question)
     {
-        $question = Question::findOrFail($id);
         return view('admin.questions.show', compact('question'));    
     }
 
-    public function edit($id)
+    public function edit(Question $question)
     {
-        $question = Question::findOrFail($id);
         return view('admin.questions.edit', compact('question'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
+        
+        
         
     }
 
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        $question = Question::findOrFail($id);
         $question->delete();
-
         return redirect('/admin/questions');
     }
 }
