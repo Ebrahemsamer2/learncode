@@ -6,13 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateQuestionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+   
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('questions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -21,20 +19,17 @@ class CreateQuestionsTable extends Migration
             $table->string('answers', 1000); // seperated by space
             $table->string('right_answer');
             $table->integer('score');
-            $table->bigInteger('track_id')->unsigned();
+
+            $table->bigInteger('quiz_id')->unsigned();
             $table->timestamps();
 
-            // Delete Questions Belongs to this Track
-            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
+            // Delete Questions Belongs to this Quiz
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
 
         });
+        
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('questions');

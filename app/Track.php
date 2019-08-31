@@ -20,15 +20,11 @@ class Track extends Model
     // Realtionships
     
     public function photo() {
-    	return $this->belongsTo('App\Photo');
+    	return $this->hasOne('App\Photo');
     }
 
     public function courses() {
     	return $this->hasMany(Course::class);
-    }
-
-    public function questions() {
-    	return $this->hasMany(Question::class);
     }
 
     public function users() {

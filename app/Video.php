@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Photo;
-use App\Track;
 use App\Course;
 
 class Video extends Model
@@ -15,7 +14,6 @@ class Video extends Model
     	'link',
         'photo_id',
         'course_id',
-        'track_id',
     ];
 
     public function photo() {
@@ -24,12 +22,6 @@ class Video extends Model
     
     public function course() {
         return $this->belongsTo(Course::class);
-    } 
-
-
-    // Optinal
-    public function track() {
-        return $this->belongsTo(Track::class);
-    }    
+    }
 
 }

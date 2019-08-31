@@ -12,10 +12,10 @@ class Question extends Model
     	'answers',
     	'right_answer',
     	'score',
-    	'track_id',
+    	'quiz_id',
     ];
 
-    public function track() {
-    	return $this->belongsTo(Track::class);
+    public function quiz() {
+        return $this->belongsTo(Quiz::class);
     }
 }

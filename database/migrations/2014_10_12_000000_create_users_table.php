@@ -15,6 +15,8 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -24,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('admin')->default(User::REGULAR_USER);
+            $table->integer('score')->default(0);
             $table->bigInteger('photo_id')->unsigned();
             $table->rememberToken();
             $table->timestamps();

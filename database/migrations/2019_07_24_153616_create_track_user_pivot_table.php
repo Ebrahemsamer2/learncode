@@ -22,6 +22,8 @@ class CreateTrackUserPivotTable extends Migration
             $table->foreign('track_id')->references('id')->on('tracks');
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::disableForeignKeyConstraints();
     }
 
     /**

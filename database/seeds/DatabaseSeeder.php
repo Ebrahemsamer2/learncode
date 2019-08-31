@@ -8,14 +8,10 @@ use App\Track;
 use App\Photo;
 use App\Video;
 use App\Question;
+use App\Quiz;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
     	// Do not check foreign keys
@@ -28,6 +24,8 @@ class DatabaseSeeder extends Seeder
         Photo::truncate();
         Video::truncate();
         Question::truncate();
+        Quiz::truncate();
+
         DB::table('course_user')->truncate();
         DB::table('track_user')->truncate();
 
@@ -37,15 +35,16 @@ class DatabaseSeeder extends Seeder
         $questionsCount = 50;
         $tracksCount = 10;
         $videosCount = 100;
+        $quizzesCount = $coursesCount * 4;
 
 
         factory(Photo::class, $photosCount)->create();
         factory(User::class, $usersCount)->create();
         factory(Track::class, $tracksCount)->create();
         factory(Course::class, $coursesCount)->create();
+        factory(Quiz::class, $quizzesCount)->create();
         factory(Question::class, $questionsCount)->create();
         factory(Video::class, $videosCount)->create();
-
 
     }
 }

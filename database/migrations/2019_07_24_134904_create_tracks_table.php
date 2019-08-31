@@ -6,13 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTracksTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        
         Schema::create('tracks', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -23,6 +21,7 @@ class CreateTracksTable extends Migration
 
             $table->foreign('photo_id')->references('id')->on('photos');
         });
+
     }
 
     /**

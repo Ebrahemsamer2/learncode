@@ -11,18 +11,7 @@ use App\Question;
 use App\Track;
 use App\Photo;
 use App\Video;
-
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+use App\Quiz;
 
 
 $factory->define(Photo::class, function (Faker $faker) {
@@ -67,8 +56,7 @@ $factory->define(Video::class, function (Faker $faker) {
         'title' => $faker->paragraph(1),
         'link' => $faker->paragraph(1),
         'photo_id' => Photo::all()->random()->id,
-        'course_id' => Course::all()->random()->id,
-        'track_id' => Track::all()->random()->id,
+        'course_id' => Course::all()->random()->id
     ];
 });
 
@@ -82,7 +70,14 @@ $factory->define(Question::class, function (Faker $faker) {
         'answers' => $answers,
         'right_answer' => $right_answer,
         'score' => $faker->randomElement([10,15,20]),
-        'track_id' => Track::all()->random()->id,
+        'quiz_id' => Quiz::all()->random()->id,
+    ];
+});
+
+$factory->define(Quiz::class, function (Faker $faker) {
+    return [
+        'title' => $faker->paragraph(1),
+        'course_id' => Course::all()->random()->id,
     ];
 });
 

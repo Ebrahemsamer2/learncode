@@ -8,6 +8,7 @@ use App\Track;
 use App\User;
 use App\Video;
 use App\Photo;
+use App\Quiz;
 
 class Course extends Model
 {
@@ -24,8 +25,9 @@ class Course extends Model
     ];
 
     public function photo() {
-        return $this->belongsTo(Photo::class);
+        return $this->hasOne(Photo::class);
     }
+    
     public function track() {
     	return $this->belongsTo(Track::class);
     }
@@ -36,5 +38,8 @@ class Course extends Model
 
     public function videos() {
         return $this->hasMany(Video::class);
+    }
+    public function quizzes() {
+        return $this->hasMany(Quiz::class);
     }
 }
