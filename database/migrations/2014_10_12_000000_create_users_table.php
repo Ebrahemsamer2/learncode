@@ -21,8 +21,6 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('verified')->default(User::UNVERIFIED_USER);
-            $table->string('verification_token')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('admin')->default(User::REGULAR_USER);

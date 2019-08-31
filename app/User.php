@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Photo;
 use App\Track;
+use App\Quiz;
 
 class User extends Authenticatable
 {
@@ -39,17 +40,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public static function generateVerificationCode() {
-        return Str::random(40);
-    }
-
     public function photo() {
         return $this->hasOne(Photo::class);
     }
 
     public function tracks() {
         return $this->belongsToMany(Track::class);
+    }
+
+    public function quizes() {
+        return $this->belongsToMany(Quiz::class);
     }
 
 }
