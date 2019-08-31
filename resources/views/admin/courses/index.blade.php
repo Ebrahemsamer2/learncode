@@ -20,6 +20,7 @@
 						{!! Form::open(['method' => 'DELETE' , 'action' => ['Admin\CourseController@destroy', $course->id]]) !!}
 	      				{!! Form::submit('Delete' , ['class' => 'btn btn-danger btn-sm']) !!}
 	      				{!! Form::close() !!}
+	      				<a class="btn btn-success btn-sm" href="/admin/courses/{{ $course->id }}">Show</a>
 					</div>
 				  	<img class="img-fluid course-image" src="/images/{{ $course->photo->filename }}" class="card-img-top" alt="...">
 				  	<div class="card-body">

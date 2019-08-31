@@ -39,9 +39,20 @@ class DatabaseSeeder extends Seeder
 
 
         factory(Photo::class, $photosCount)->create();
-        factory(User::class, $usersCount)->create();
+        // factory(User::class, $usersCount)->create();
         factory(Track::class, $tracksCount)->create();
         factory(Course::class, $coursesCount)->create();
+        
+        factory(User::class, $usersCount)->create()->each(function($user) {
+
+            $courses = Course::all()->random(mt_rand(1, 5))->pluck('id');
+            $tracks = Track::all()->random(mt_rand(1, 5))->pluck('id');
+            
+            $user->tracks()->attach($tracks);
+            $user->courses()->attach($courses);
+        
+        });
+
         factory(Quiz::class, $quizzesCount)->create();
         factory(Question::class, $questionsCount)->create();
         factory(Video::class, $videosCount)->create();

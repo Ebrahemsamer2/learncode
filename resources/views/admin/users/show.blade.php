@@ -1,25 +1,21 @@
 @extends('layouts.admin_layout')
 
-@section('title', 'Track | Dashboard')
+@section('title', 'Edit User | Admin Dashboard')
 
 @section('pagename')
-	<a href="/admin/tracks/{{ $track->id }}" class="navbar-brand" >{{ $track->name }} Track</a>
+	<a class="navbar-brand" href="/admin/users/{{ $user->id }}/edit"><strong>{{ $user->name }}</strong></a>
 @endsection
-
 
 
 @section('content')
 	
-	<div class="track-container">
-		<div class="track-image">
-			<img height="300" src="/images/{{ $track->photo->filename }}" class="track-image">
-		</div>
-
-		<div class="track-courses">
-			<h3>{{ $track->name }}'s Track has {{ count($track->courses) }} courses</h3>
-			<div class="courses">
-				<div class="row">
-				@foreach($track->courses as $course)
+	<div class="user-courses">
+		
+		<h3><strong>{{ $user->name }}</strong> enrolled in</h3>
+		<div class="courses">
+			
+			<div class="row">
+				@foreach($user->courses as $course)
 
 					<div class="col-sm-4">
 						
@@ -49,10 +45,9 @@
 					</div>
 
 				@endforeach
-				</div>
 			</div>
-		</div>
 
+		</div>
 	</div>
 
 @endsection

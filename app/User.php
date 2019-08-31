@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Photo;
 use App\Track;
 use App\Quiz;
+use App\Course;
 
 class User extends Authenticatable
 {
@@ -41,7 +42,7 @@ class User extends Authenticatable
     ];
 
     public function photo() {
-        return $this->hasOne(Photo::class);
+        return $this->belongsTo(Photo::class);
     }
 
     public function tracks() {
@@ -52,4 +53,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Quiz::class);
     }
 
+    public function courses() {
+        return $this->belongsToMany(Course::class);
+    }
 }

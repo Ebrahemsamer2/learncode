@@ -23,10 +23,8 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-
-        $user = User::findOrFail($id);
 
         $rules = [
             'name'  => 'min:6|max:20',
@@ -52,10 +50,13 @@ class UserController extends Controller
 
     }
 
-    public function destroy($id)
+    public function show(User $user) {
+        return view('admin.users.show', compact('user'));
+    }
+
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+       $user->delete();
         return redirect('/admin/users');
     }
 }

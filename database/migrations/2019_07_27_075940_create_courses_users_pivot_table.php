@@ -9,7 +9,7 @@ class CreateCoursesUsersPivotTable extends Migration
    
     public function up()
     {   
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
 
         Schema::create('course_user', function (Blueprint $table) {
             $table->engine = 'InnoDB';

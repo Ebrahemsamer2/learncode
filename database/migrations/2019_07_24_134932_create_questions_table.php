@@ -9,7 +9,7 @@ class CreateQuestionsTable extends Migration
    
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
 
         Schema::create('questions', function (Blueprint $table) {
             $table->engine = 'InnoDB';

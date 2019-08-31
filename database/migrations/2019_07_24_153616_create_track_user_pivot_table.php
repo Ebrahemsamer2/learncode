@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTrackUserPivotTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('track_user', function (Blueprint $table) {
@@ -23,14 +19,8 @@ class CreateTrackUserPivotTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::disableForeignKeyConstraints();
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('track_user');

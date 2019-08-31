@@ -8,7 +8,7 @@ class CreateQuizzesTable extends Migration
 {
     public function up()
     {   
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
         
         Schema::create('quizzes', function (Blueprint $table) {
             $table->bigIncrements('id');

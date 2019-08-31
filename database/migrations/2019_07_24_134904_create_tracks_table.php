@@ -9,7 +9,7 @@ class CreateTracksTable extends Migration
 
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
         
         Schema::create('tracks', function (Blueprint $table) {
             $table->engine = 'InnoDB';
