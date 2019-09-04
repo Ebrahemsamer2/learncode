@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-
+	@include('admin.courses.sessions')
 	<div class="row">
 		
 		@foreach($courses as $course)
@@ -17,7 +17,7 @@
 				<div class="card" style="width: 18rem;">
 					<div class="admin-action">
 						<a class="btn btn-info btn-sm" href="/admin/courses/{{ $course->id }}/edit">Edit</a>
-						{!! Form::open(['method' => 'DELETE' , 'action' => ['Admin\CourseController@destroy', $course->id]]) !!}
+						{!! Form::open(['method' => 'DELETE' , 'action' => ['Admin\CourseController@destroy', $course]]) !!}
 	      				{!! Form::submit('Delete' , ['class' => 'btn btn-danger btn-sm']) !!}
 	      				{!! Form::close() !!}
 	      				<a class="btn btn-success btn-sm" href="/admin/courses/{{ $course->id }}">Show</a>

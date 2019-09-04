@@ -24,7 +24,8 @@ class CreateCoursesTable extends Migration
             $table->bigInteger('track_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('track_id')->references('id')->on('tracks');
+
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
             $table->foreign('photo_id')->references('id')->on('photos');
         });
 

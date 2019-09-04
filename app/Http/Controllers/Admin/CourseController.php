@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
 use App\Course;
@@ -15,7 +16,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::orderBy('id', 'desc')->paginate(15);
+        $courses = Course::withTrashed()->orderBy('id', 'desc')->paginate(15);
         return view('admin.courses.index', compact('courses'));
     }
 
@@ -55,6 +56,7 @@ class CourseController extends Controller
         }
 
         Course::create($data);
+        Session::flash('created_course', $data['title'] . ' Course has created');
         return redirect('/admin/courses');
     }
 
@@ -104,16 +106,19 @@ class CourseController extends Controller
         }
 
         if($course->isClean()) {
-            // Nothing Changed
+            Session::flash('nothing_changed', $course->title . ' Course has not changed');
+            return redirect('/admin/courses/');
         }
         
         $course->save();
+        Session::flash('updated_course', $course->title . ' Course has updated');
         return redirect('/admin/courses/');
     }
     
     public function destroy(Course $course)
     {
         $course->delete();
+        Session::flash('deleted_course', $course->title . ' Course has Deleted');
         return redirect('/admin/courses');
     }
 }

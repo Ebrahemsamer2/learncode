@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+
 
 use App\User;
 
@@ -17,9 +19,8 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
         return view('admin.users.edit', compact('user'));
     }
 
@@ -33,18 +34,18 @@ class UserController extends Controller
 
         if($request->has('email') && $request->email != $user->email) {
             $user['email'] = $request->email;
-            $user['verified'] = User::UNVERIFIED_USER;
-            $user['verification_token'] = User::generateVerificationCode();
         }
 
         if($request->has('name')) {
             $user['name'] = $request->name;
         }
 
-        if(!$user->isDirty()) {
-            dd("Nothing Changed");
+        if(! $user->isDirty()) {
+            Session::flash('nothing_changed', $user->name . ' has not changed');
+            return redirect('/admin/users');
         }else {
             $user->save();
+            Session::flash('updated_user', $user->name . ' has updated');
             return redirect('/admin/users');
         }
 
@@ -57,6 +58,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
        $user->delete();
-        return redirect('/admin/users');
+       Session::flash('deleted_user', $user->name . ' has deleted');
+       return redirect('/admin/users');
     }
 }

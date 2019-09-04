@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-
+	@include('admin.tracks.sessions')
 	<table class="table">
 	  <thead>
 	    <tr>
@@ -25,9 +25,9 @@
 	      <td><img width="150" height="110" src="/images/{{ $track->photo->filename }} "></td>
 	      <td>{{ $track->name }}</td>
 	      <td>{{ count($track->courses) }}</td>
-	      <td><a class="btn btn-info btn-sm" href="/admin/tracks/{{ $track->id }}/edit"><i class="fa fa-edit fa-sm"></i> Edit</a></td>
+	      <td><a class="btn btn-info btn-sm" href="/admin/tracks/{{ $track->id }}/edit">Edit</a></td>
 	      <td>
-	      	{!! Form::open(['method' => 'DELETE' , 'action' => ['Admin\TrackController@destroy', $track->id]]) !!}
+	      	{!! Form::open(['method' => 'DELETE' , 'action' => ['Admin\TrackController@destroy', $track]]) !!}
 	      		{!! Form::submit('Delete' , ['class' => 'btn btn-danger btn-sm']) !!}
 	      	{!! Form::close() !!}
 	      </td>
@@ -39,4 +39,3 @@
 	{{ $tracks->links() }}
 	<a href="/admin/tracks/create" class="btn btn-primary new">New Track</a>
 @endsection
-

@@ -27,6 +27,8 @@ label {
 	text-align: center;
 }
 
+
+
 /* courses.index */
 .course-image {
 	transition: .3s ease-in-out;
@@ -50,6 +52,8 @@ label {
 
 /* course.show */
 
+
+
 .video-container {
 	padding: 10px;
 	margin-bottom: 20px;
@@ -60,3 +64,14 @@ label {
 	padding: 0;
 	margin: 0;
 }
+
+
+
+/* Videos */
+
+/* ==== Index ==== */
+
+.video .card {
+	width: auto!important;
+}
+

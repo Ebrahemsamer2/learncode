@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-
+	@include('admin.users.sessions')
 	<table id="users_table" class="table">
 	  <thead>
 	    <tr>
@@ -26,11 +26,11 @@
 	      <td>{{ $user->name }}</td>
 	      <td>{{ $user->email }}</td>
 	      <td>{{ $user->admin ? 'Admin' : 'User'}}</td>
-	      <td>{{ $user->verified == 1 ? 'Verified' : 'Unverified'}} </td>
+	      <td>{{ $user->verified() == true ? 'Verified' : 'Unverified'}} </td>
 	      <td><a class="btn btn-info btn-sm" href="/admin/users/{{ $user->id }}/edit">Edit</a></td>
 	      <td>
-	      	{!! Form::open(['method'=>'DELETE', 'action' => ['Admin\UserController@destroy', $user->id]]) !!}
-	      		{!! Form::submit('Delete',['class' => 'btn btn-danger btn-sm delete', 'id' => $user->id]) !!}
+	      	{!! Form::open(['method'=>'DELETE', 'action' => ['Admin\UserController@destroy', $user]]) !!}
+	      		{!! Form::submit('Delete',['class' => 'btn btn-danger btn-sm delete', 'id' => $user]) !!}
 	      	{!! Form::close() !!}
 	      </td>
 	      <td><a class="btn btn-primary btn-sm" href="/admin/users/{{ $user->id }}">Show</a></td>

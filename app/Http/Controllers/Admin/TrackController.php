@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 use App\Track;
 use App\Photo;
@@ -52,6 +53,7 @@ class TrackController extends Controller
         $data['photo_id'] = $photo_id;
 
         Track::create($data);
+        Session::flash('created_track', $data['name'] . ' Track has Created');
         return redirecT('/admin/tracks');
     }
 
@@ -96,9 +98,11 @@ class TrackController extends Controller
         }
 
         if($track->isClean()) {
-            // nothing has changed
+            Session::flash('nothing_changed', $track->name . ' Track has not Updated');
+            return redirect('/admin/tracks');
         }else {
             $track->save();
+            Session::flash('updated_track', $track->name . ' Track has updated');
             return redirect('/admin/tracks');
         }
     }
@@ -109,11 +113,15 @@ class TrackController extends Controller
         $track->delete();
         
         // delete the image from server
-        unlink(public_path('images/' . $track->photo->filename));
+        Photo::destroy($track->photo->id);
+
+        // not yet
+        // unlink(public_path('images/' . $track->photo->filename));
+
 
         // remove the image from DB
         Photo::destroy($track->photo->id);
-
+        Session::flash('deleted_track', $track->name . ' Track has Deleted');
         return redirect('/admin/tracks');
     }
 }

@@ -43,6 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // DB Relationships 
+    
     public function photo() {
         return $this->belongsTo(Photo::class);
     }
@@ -57,5 +59,11 @@ class User extends Authenticatable
 
     public function courses() {
         return $this->belongsToMany(Course::class);
+    }
+
+
+    // check if user email is verified 
+    public function verified() {
+        return ! empty($this->email_verified_at);
     }
 }
