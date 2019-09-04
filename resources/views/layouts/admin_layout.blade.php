@@ -60,6 +60,12 @@
               <p>Courses</p>
             </a>
           </li>
+          <li class="nav-item {{ explode('.', \Request::route()->getName())[0] == 'quizzes' ? 'active' : '' }} ">
+            <a class="nav-link" href="/admin/quizzes">
+              <i class="fa fa-question-circle"></i>
+              <p>Quizzes</p>
+            </a>
+          </li>
           <li class="nav-item {{ explode('.', \Request::route()->getName())[0] == 'questions' ? 'active' : '' }} ">
             <a class="nav-link" href="/admin/questions">
               <i class="fa fa-question-circle"></i>

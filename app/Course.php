@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Track;
 use App\User;
@@ -12,6 +13,7 @@ use App\Quiz;
 
 class Course extends Model
 {
+    use SoftDeletes;
 
     const UNPAID = 0;
     const PAID = 1;

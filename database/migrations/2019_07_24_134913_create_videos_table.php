@@ -20,7 +20,7 @@ class CreateVideosTable extends Migration
             $table->bigInteger('photo_id')->unsigned();
             $table->bigInteger('course_id')->unsigned();
             $table->timestamps();
-
+            $table->softDeletes();
             $table->foreign('photo_id')->references('id')->on('photos');
             $table->foreign('course_id')->references('id')->on('courses');
         });

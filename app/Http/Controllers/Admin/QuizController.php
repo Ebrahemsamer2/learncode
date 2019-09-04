@@ -12,13 +12,13 @@ class QuizController extends Controller
 {
     public function index()
     {
-        $quizes = Quiz::paginate(10);
-        return view('quizes.index', compact('quizes'));
+        $quizzes = Quiz::orderBy('id', 'desc')->paginate(10);
+        return view('admin.quizzes.index', compact('quizzes'));
     }
 
     public function create()
     {
-        return view('quizes.create');
+        return view('admin.quizzes.create');
     }
 
     public function store(Request $request)
@@ -28,15 +28,15 @@ class QuizController extends Controller
 
     public function show(Quiz $quiz)
     {
-        return view('quizes.show', compact('quiz'));
+        return view('admin.quizzes.show', compact('quiz'));
     }
 
     public function edit(Quiz $quiz)
     {
-        return view('quizes.edit', compact('quiz'));
+        return view('admin.quizzes.edit', compact('quiz'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Quiz $quiz)
     {
         
     }
@@ -45,6 +45,6 @@ class QuizController extends Controller
     {
         $quiz->delete();
         Session::flash('deleted_quiz', 'Quiz ' . $quiz->title . ' has deleted');
-        return redirect('/admin/quizes');
+        return redirect('/admin/quizzes');
     }
 }

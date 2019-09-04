@@ -27,12 +27,14 @@
 	      <td>{{ $user->email }}</td>
 	      <td>{{ $user->admin ? 'Admin' : 'User'}}</td>
 	      <td>{{ $user->verified == 1 ? 'Verified' : 'Unverified'}} </td>
-	      <td><a class="btn btn-info btn-sm" href="/admin/users/{{ $user->id }}/edit"><i class="fa fa-edit fa-sm"></i> Edit</a></td>
+	      <td><a class="btn btn-info btn-sm" href="/admin/users/{{ $user->id }}/edit">Edit</a></td>
 	      <td>
 	      	{!! Form::open(['method'=>'DELETE', 'action' => ['Admin\UserController@destroy', $user->id]]) !!}
 	      		{!! Form::submit('Delete',['class' => 'btn btn-danger btn-sm delete', 'id' => $user->id]) !!}
 	      	{!! Form::close() !!}
 	      </td>
+	      <td><a class="btn btn-primary btn-sm" href="/admin/users/{{ $user->id }}">Show</a></td>
+	      <td>
 	    </tr>
 	    @endforeach
 	  </tbody>

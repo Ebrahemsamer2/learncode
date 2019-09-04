@@ -8,11 +8,6 @@ use App\User;
 
 class CreateUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         // Schema::disableForeignKeyConstraints();
@@ -31,15 +26,12 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
+            $table->softDeletes();
+
             $table->foreign('photo_id')->references('id')->on('photos');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('users');

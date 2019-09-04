@@ -22,7 +22,7 @@ class CreateQuestionsTable extends Migration
 
             $table->bigInteger('quiz_id')->unsigned();
             $table->timestamps();
-
+            $table->softDeletes();
             // Delete Questions Belongs to this Quiz
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
 

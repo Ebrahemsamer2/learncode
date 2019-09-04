@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Photo;
 use App\Track;
@@ -16,6 +17,7 @@ use App\Course;
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     const VERIFIED_USER = 1;
     const UNVERIFIED_USER = 0;
