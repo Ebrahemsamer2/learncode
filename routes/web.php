@@ -11,7 +11,10 @@ Route::namespace('Admin')->group(function() {
 
 	Route::resource('admin/questions','QuestionController', ['except' => ['show']]);
 
-	Route::resource('admin/videos','VideoController');
+	Route::resource('admin/videos','VideoController', ['except' => 'create']);
+
+	Route::get('admin/videos/{id}/create', 'VideoController@addVideo');
+
 
 	Route::resource('admin/tracks','TrackController');
 

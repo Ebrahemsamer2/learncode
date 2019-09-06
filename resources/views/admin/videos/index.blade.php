@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 
-@section('title', 'Courses | Admin Dashboard')
+@section('title', 'Videos | Admin Dashboard')
 
 @section('pagename')
 	<a href="/admin/videos" class="navbar-brand">Videos</a>
@@ -8,9 +8,11 @@
 
 @section('content')
 	
+	@include('admin.videos.sessions')
+	
 	@foreach($courses as $course)
 
-		<div class="alert alert-info">
+		<div class="alert alert-primary">
 			<div class="course-title">
 				
 				{{ $course->title . " ( " . count($course->videos) ." Videos )"}}
@@ -31,9 +33,9 @@
 								<div class="card-body">
 								    <h5 class="card-title">{{ Str::limit($video->title, 50) }}</h5>
 								    <a href="#" class="btn btn-primary btn-sm">Review</a>
-								    <a href="#" class="btn btn-info btn-sm">Edit</a>
+								    <a href="/admin/videos/{{ $video->id }}/edit" class="btn btn-info btn-sm">Edit</a>
 								    <a href="#" class="btn btn-danger btn-sm">DELETE</a>
-								    <a href="#" class="btn btn-success btn-sm">show</a>
+								    <a href="/admin/videos/{{ $video->id }}" class="btn btn-success btn-sm">show</a>
 								</div>
 							
 							</div>
@@ -41,7 +43,7 @@
 					</div>
 				@endforeach
 				<div>
-				<a class="btn btn-primary" href="/admin/videos/create">New Video</a>
+					<a class="btn btn-primary" href="/admin/videos/{{ $course->id }}/create">New Video</a>
 				</div>
 			</div>
 		</div>
