@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Session;
+
 use App\Question;
+use App\Quiz;
 
 class QuestionController extends Controller
 {
@@ -15,9 +18,17 @@ class QuestionController extends Controller
         return view('admin.questions.index', compact('questions'));
     }
 
-    public function create()
-    {
-        return view('admin.questions.create');
+    public function addQuestion($id)
+    {   
+        $quizzes = Quiz::pluck('title', 'id');
+
+        $quiz = Quiz::findOrFail($id);
+        return view('admin.questions.create', compact('quiz'));
+    }
+
+    public function create() {
+        $quizzes = Quiz::pluck('title', 'id');
+        return view('admin.questions.create', compact('quizzes'));
     }
 
     public function store(Request $request)
@@ -28,14 +39,15 @@ class QuestionController extends Controller
             'answers' => 'required|min:10',
             'right_answer' => 'required',
             'score' => 'required|integer',
-            'track_id' => 'required|integer',
+            'quiz_id' => 'required|integer',
         ];
 
         $this->validate($request, $rules);
 
         $data = $request->all();
-
+        
         Question::create($data);
+        Session::flash('created_question', 'Question ' . $request->title . ' has Created');
         return redirect('/admin/questions');
 
     }
@@ -47,7 +59,8 @@ class QuestionController extends Controller
 
     public function edit(Question $question)
     {
-        return view('admin.questions.edit', compact('question'));
+        $quizzes = Quiz::pluck('title', 'id');
+        return view('admin.questions.edit', compact('question', 'quizzes'));
     }
 
     public function update(Request $request, Question $question)
@@ -58,7 +71,7 @@ class QuestionController extends Controller
             'answers' => 'required|min:10',
             'right_answer' => 'required',
             'score' => 'required|integer',
-            'track_id' => 'required|integer',
+            'quiz_id' => 'required|integer',
         ];
 
         $this->validate($request, $rules);
@@ -79,14 +92,16 @@ class QuestionController extends Controller
             $question->score = $request->score;
         }
 
-        if($request->has('track_id')) {
-            $question->track_id = $request->track_id;
+        if($request->has('quiz_id')) {
+            $question->quiz_id = $request->quiz_id;
         }
 
         if($question->isClean()) {
-            // nothing changed
+            Session::flash('nothing_changed', 'Nothing Changed');
+            return redirect('/admin/questions/'. $question->id .'/edit');
         }else {
             $question->save();
+            Session::flash('updated_question', 'Question ' . $request->title . ' has Updated');
             return redirect('/admin/questions');
         }
     }
@@ -94,6 +109,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
+        Session::flash('udeleted_question', 'Question ' . $question->title . ' has Deleted');
         return redirect('/admin/questions');
     }
 }

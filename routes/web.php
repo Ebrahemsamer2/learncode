@@ -9,12 +9,14 @@ Route::namespace('Admin')->group(function() {
 
 	Route::resource('admin/photos','PhotoController');
 
+	Route::get('admin/question/{id}/create', 'QuestionController@addQuestion');
+	
 	Route::resource('admin/questions','QuestionController', ['except' => ['show']]);
-
-	Route::resource('admin/videos','VideoController', ['except' => 'create']);
 
 	// Add Video For a Specific Course
 	Route::get('admin/videos/{id}/create', 'VideoController@addVideo');
+
+	Route::resource('admin/videos','VideoController', ['except' => 'create']);
 
 
 	Route::resource('admin/tracks','TrackController');

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-
+@include('admin.questions.sessions')
 <table class="table">
   <thead class="thead-light">
     <tr>

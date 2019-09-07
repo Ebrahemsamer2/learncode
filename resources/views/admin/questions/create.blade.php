@@ -25,7 +25,7 @@
 		</div>
 		<div class="form-group">
 			{!! Form::label('answers', 'Question Answers') !!}
-			{!! Form::text('answers', null, ['class' => 'form-control']) !!}
+			{!! Form::text('answers', null, ['class' => 'form-control', 'placeholder' => 'Must be seperated by space']) !!}
 		</div>
 		<div class="form-group">
 			{!! Form::label('right_answer', 'Right Answer') !!}
@@ -36,8 +36,8 @@
 			{!! Form::select('score', ['5' => '5', '10' => '10', '15' => '15', '20' => '20'],null, ['class' => 'form-control']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::label('track_id', 'Treack') !!}
-			{!! Form::select('track_id', \App\Track::pluck('name', 'id') , null, ['class' => 'form-control']) !!}
+			{!! Form::label('quiz_id', 'Quiz') !!}
+			{!! Form::select('quiz_id', $quizzes ,null, ['class' => 'form-control']) !!}
 		</div>
 		{!! Form::submit('Create Question', ['class' => 'btn btn-primary']) !!}
 	{!! Form::close() !!}
